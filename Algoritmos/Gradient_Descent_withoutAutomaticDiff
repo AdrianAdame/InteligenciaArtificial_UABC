@@ -1,0 +1,26 @@
+import numpy as np
+
+np.set_printoptions(precision=20)
+
+def gradient_descent(x, eta, tmax, goal, mingrad):
+    for i in range(tmax):
+        diferencia = -eta * gradient(x)
+
+        if(f(x) <= goal):
+            break
+
+        x = x +  diferencia   
+        print("Iter: ", i)
+    return x
+
+def f(x):
+    return (x[0]+2*x[1] - 7) ** 2 + (2*x[0] + x[1] - 5) ** 2
+
+def gradient(x):
+    return np.array([10*x[0] + 8*x[1] - 34, 8*x[0] + 10*x[1] - 38])
+
+x = np.array([0,0])
+
+x= gradient_descent(x, 0.1, 1000, 10e-8, 10e-10)
+
+print(x)
